@@ -60,7 +60,7 @@ void delete_end_node(stack_t **head)
 
 /**
  *free_list - function that frees a list
- *@head: pointer to a head
+ *@head: pointer to the head
  **/
 void free_list(stack_t *head)
 {
