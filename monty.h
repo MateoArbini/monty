@@ -38,4 +38,15 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/*General functions for lists*/
+stack_t *add_dnodeint_end(stack_t **head, const int n);
+void delete_end_node(stack_t **head);
+void free_list(stack_t *head);
+
+/*Calloc function*/
+
+/*functions*/
+void (*get_op_func(char *first_arg))(stack_t **stack, unsigned int line_number);
+void *_calloc(unsigned int nmemb, unsigned int size);
+
 #endif
