@@ -44,9 +44,9 @@ void delete_end_node(stack_t **head);
 void free_list(stack_t *head);
 
 /*Calloc function*/
+void *_calloc(unsigned int nmemb, unsigned int size);
 
 /*functions*/
 void (*get_op_func(char *first_arg))(stack_t **stack, unsigned int line_number);
-void *_calloc(unsigned int nmemb, unsigned int size);
 
 #endif
