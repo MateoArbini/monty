@@ -6,7 +6,7 @@
  **/
 void swap(stack_t **h, unsigned int line_number)
 {
-	stack_t *aux == NULL;
+	stack_t *aux = NULL;
 
 	if (h == NULL || *h == NULL || (*h)->next == NULL) /*checkeamos lista*/
 	{
@@ -55,7 +55,7 @@ void add(stack_t **h, unsigned int line_number)
  **/
 void nop(stack_t **h, unsigned int line_number)
 {
-	void (*h);
-	void line_numbers;
+	(void) h;
+	(void) line_number;
 }
 

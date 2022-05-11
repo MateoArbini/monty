@@ -3,14 +3,13 @@
  *add_node_end - add a node at the end of the list
  *@head: pointer to the head of the list
  *@n: node data type int
- *Return: newnode
+ *Return: 0
  **/
-stack_t *add_node_end(stack_t **head, const int n)
+int add_node_end(stack_t **head, const int n)
 {
-	stack_t *aux = *head;
 	stack_t *newnode;
 
-	newnode = malloc(sizeof(dlistint_t));
+	newnode = malloc(sizeof(stack_t));
 
 	if (newnode != NULL)
 	{
@@ -20,20 +19,22 @@ stack_t *add_node_end(stack_t **head, const int n)
 	}
 	else
 	{
-		return (NULL);
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		return (1);
 	}
 	if (*head == NULL)
 	{
 		*head = newnode;
-		return (newnode);
+		newnode->next = NULL;
+		newnode->prev = NULL;
 	}
-	while (aux->next != NULL)
+	else
 	{
-		aux = aux->next;
+		*head = newnode;
+		newnode->next = *head;
+		newnode->prev = NULL;
 	}
-	aux->next = newnode;
-	newnode->prev = aux;
-	return (newnode);
+	return (0);
 }
 
 /**
@@ -69,7 +70,7 @@ void free_list(stack_t **head)
 		return;
 	}
 
-	while (head != NULL && (*h)->next)
+	while (head != NULL && (*head)->next)
 	{
 		*head = (*head)->next;
 		free((*head)->prev);

@@ -11,16 +11,16 @@ int numbers(char *tokenized_text)
 
 	for (x = 0; tokenized_text[x]; x++)
 	{
-		if (tokenized_text[x] == '-' && x = 0)
+		if (tokenized_text[x] == '-' && x == 0)
 		{
 			continue;
 		}
-		if (isdigit(tokenized[x]) == 0)
+		if (isdigit(tokenized_text[x]) == 0)
 		{
-			return (1)
+			return (1);
 		}
 	}
-	return (0)
+	return (0);
 }
 
 /**
@@ -76,7 +76,7 @@ void pop(stack_t **h, unsigned int line_number)
  **/
 void pall(stack_t **h, __attribute__((unused))unsigned int line_number)
 {
-	stack_t *aux = (*head);/*igualamos el puntero aux al head*/
+	stack_t *aux = (*h);/*igualamos el puntero aux al head*/
 
 	while (aux != NULL)/*recorre la lista hasta que aux sea NULL*/
 	{
@@ -100,7 +100,7 @@ void pint(stack_t **h, unsigned int line_number)
 	}
 	else
 	{
-		printf("%d\n", (h*)->n);
+		printf("%d\n", (*h)->n);
 	}
 }
 

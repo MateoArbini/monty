@@ -7,6 +7,10 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdarg.h>
+#include <stdarg.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -39,7 +43,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /*General functions for lists*/
-stack_t *add_node_end(stack_t **head, const int n);
+int add_node_end(stack_t **head, const int n);
 void delete_end_node(stack_t **head);
 void free_list(stack_t **head);
 
@@ -47,7 +51,7 @@ void free_list(stack_t **head);
 void *_calloc(unsigned int nmemb, unsigned int size);
 
 /*functions*/
-void (*get_op_func(char *first_arg))(stack_t **stack, unsigned int line_number);
+void (*get_op_func(char *ops))(stack_t **stack, unsigned int line_number);
 int numbers(char *tokenized_text);
 void push(stack_t **h, unsigned int line_number, char *tokenized_text);
 void pop(stack_t **h, unsigned int line_number);
