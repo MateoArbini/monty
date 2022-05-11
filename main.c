@@ -35,8 +35,9 @@ void (*get_op_func(char *tokenized_text))(stack_t **stack, unsigned int line_num
  **/
 int main(int argc, char *argv[])
 {
-	int fileopen, read_length, lines = 1;
-	char *buffer; tokenized_text;
+	int fileopen, read_length;
+	char *buffer; tokenized_text, *h = NULL;
+	unsigned int lines = 1;
 
 	if (argc != 2) /*si son dos argumentos, el monty y filename*/
 	{
@@ -64,9 +65,24 @@ int main(int argc, char *argv[])
 	tokenized_text = strtok(buffer, "\n\t$ ");/*aca obtenemos el texto tokenizado*/
 	while (tokenized_text != NULL) /*aca recorremos el texto tokenizado*/
 	{
-
-
-	lines++;
+		if (get_op_func(tokenized_text) != 0)/*confirmamos si la funcion que recibe tok != 0*/
+			get_op_func(tokenized_text)(&h, lines);
+		else if (strcmp(tokenized_text, "push") == 0) /*utilizamos el strcmp para comparar el tok con la func*/
+		{
+			tokenized_text = strtok(NULL, "\n\t$ ");
+			push(&h, lines, tokenized_text);
+		}
+		else /*en caso contrario, no se entiende la instruccion dada y printea mensaje de error*/
+		{
+			drpintf(STDERR_FILENO, "L%d: unknown instruction %s\n", lines, tokenized_text);
+			free_list(&h);
+			exit(EXIT_FAILURE);
+		}
+		lines++; /*iteramos contador de lineas*/
+		tokenized_text = strtok(NULL, "\n\t& ");
 	}
-		
+	free_list(&h);/*liberamos el puntero*/
+	free(buffer);/*liberamos el buffer*/
+	close(fileopen);/*cerramos el archivo*/
+	return (0);
 }
