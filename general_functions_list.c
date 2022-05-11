@@ -1,11 +1,11 @@
 #include "monty.h"
 /**
- *add_dnodeint_end - add a node at the end of the list
+ *add_node_end - add a node at the end of the list
  *@head: pointer to the head of the list
  *@n: node data type int
  *Return: newnode
  **/
-stack_t *add_dnodeint_end(stack_t **head, const int n)
+stack_t *add_node_end(stack_t **head, const int n)
 {
 	stack_t *aux = *head;
 	stack_t *newnode;

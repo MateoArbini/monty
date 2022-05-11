@@ -39,7 +39,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /*General functions for lists*/
-stack_t *add_dnodeint_end(stack_t **head, const int n);
+stack_t *add_node_end(stack_t **head, const int n);
 void delete_end_node(stack_t **head);
 void free_list(stack_t *head);
 
