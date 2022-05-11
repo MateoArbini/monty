@@ -48,5 +48,13 @@ void *_calloc(unsigned int nmemb, unsigned int size);
 
 /*functions*/
 void (*get_op_func(char *first_arg))(stack_t **stack, unsigned int line_number);
+int numbers(char *tokenized_text);
+void push(stack_t **h, unsigned int line_number, char *tokenized_text);
+void pop(stack_t **h, unsigned int line_number);
+void pall(stack_t **h, __attribute__((unused))unsigned int line_number);
+void pint(stack_t **h, unsigned int line_number);
+void swap(stack_t **h, unsigned int line_number);
+void add(stack_t **h, unsigned int line_number);
+void nop(stack_t **h, unsigned int line_number);
 
 #endif
