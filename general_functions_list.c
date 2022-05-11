@@ -62,14 +62,17 @@ void delete_end_node(stack_t **head)
  *free_list - function that frees a list
  *@head: pointer to the head
  **/
-void free_list(stack_t *head)
+void free_list(stack_t **head)
 {
-	void *aux;
-
-	while (head != NULL)
+	if (*head == NULL)
 	{
-		aux = head;
-		head = head->next;
-		free(aux);
+		return;
 	}
+
+	while (head != NULL && (*h)->next)
+	{
+		*head = (*head)->next;
+		free((*head)->prev);
+	}
+	free(*head);
 }

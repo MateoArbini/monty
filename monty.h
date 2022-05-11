@@ -41,7 +41,7 @@ typedef struct instruction_s
 /*General functions for lists*/
 stack_t *add_node_end(stack_t **head, const int n);
 void delete_end_node(stack_t **head);
-void free_list(stack_t *head);
+void free_list(stack_t **head);
 
 /*Calloc function*/
 void *_calloc(unsigned int nmemb, unsigned int size);
