@@ -20,9 +20,10 @@ void (*get_op_func(char *ops))(stack_t **stack, unsigned int line_number)
 
 	while (x != 7)
 	{
-		if (strcmp(ops, instruction_s[x].opcode) == 0)
+		if (instruction_s[x].opcode == ops)
 			return (instruction_s[x].f);
-		x++;
+		else
+			x++;
 	}
 	return (NULL);
 }
@@ -51,7 +52,7 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	buffer = _calloc(500, sizeof(char *));
+	buffer = malloc(sizeof(char) * 5000);
 	if (buffer == NULL)
 	{
 		close(fileopen);
@@ -71,17 +72,18 @@ int main(int argc, char *argv[])
 			get_op_func(tokenized_text)(&h, lines);
 		else if (strcmp(tokenized_text, "push") == 0)
 		{
-			tokenized_text = strtok(NULL, "\n\t $");
+			tokenized_text = strtok(NULL, "\n\t\a\r :;$");
 			push(&h, lines, tokenized_text);
 		}
 		else
 		{
-		dprintf(2, "L%d: unknown instruction %s\n", lines, tokenized_text);
-		free_list(&h);
-		exit(EXIT_FAILURE);
+			dprintf(2, "L%d: unknown instruction %s\n", lines, tokenized_text);
+			free_list(&h);
+			free(buffer);
+			exit(EXIT_FAILURE);
 		}
 		lines++; /*iteramos contador de lineas*/
-		tokenized_text = strtok(NULL, "\n\t $");
+		tokenized_text = strtok(NULL, "\n\t\a\r :;$");
 	}
 	free_list(&h);/*liberamos el puntero*/
 	free(buffer);/*liberamos el buffer*/
