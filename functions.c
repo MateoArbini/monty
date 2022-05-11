@@ -52,7 +52,7 @@ void push(stack_t **h, unsigned int line_number, char *tokenized_text)
 }
 
 /**
- *pall - function that deletes the top element of the stack
+ *pop - function that deletes the top element of the stack
  *@h: pointer to the head
  *@line_number: line number of the bytecode monty program
  **/
@@ -73,6 +73,7 @@ void pop(stack_t **h, unsigned int line_number)
 /**
  *pall - function that prints all the elements of a list
  *@h: pointer to the head of the list
+ *@line_number: line_number
  **/
 void pall(stack_t **h, __attribute__((unused))unsigned int line_number)
 {
