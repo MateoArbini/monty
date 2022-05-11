@@ -7,23 +7,21 @@
  **/
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	void *p;
-	unsigned int i;
+	void *mem_space;
+	unsigned int i, limit = 0;
 
-	if (nmemb <= 0 || size <= 0)
-	{
+	limit = nmemb * size;
+
+	if (limit <= 0)
 		return (NULL);
-	}
 
-	p = malloc(nmemb * size);
+	mem_space = malloc(limit);
 
-	if (p == NULL)
-	{
+	if (mem_space == NULL)
 		return (NULL);
-	}
 
-	for (i = 0; i < nmemb * size; i++)
-		*((char *)p + i) = 0;
+	for (i = 0; i < limit; i++)
+		*((char *)mem_space + i) = 0;
 
-	return (p);
+	return (mem_space);
 }
