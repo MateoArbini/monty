@@ -15,7 +15,7 @@ int numbers(char *tokenized_text)
 		{
 			continue;
 		}
-		if (isdigit(tokenized_text[x]) == 0)
+		if (isdigit(tokenized_text[x]) > 0)
 		{
 			return (1);
 		}
@@ -31,19 +31,19 @@ int numbers(char *tokenized_text)
  **/
 void push(stack_t **h, unsigned int line_number, char *tokenized_text)
 {
-	if (*h == NULL || h == NULL) /*confirmamos si la lista no esta vacia*/
+	if (h == NULL) /*confirmamos si la lista no esta vacia*/
 	{
 		return;
 	}
-	if (numbers(tokenized_text) == 1)/*condicion si lo que leyo es solo numeros*/
+	if (numbers(tokenized_text) == 0)/*condicion si lo que leyo es solo numeros*/
 	{
-		dprintf(STDERR_FILENO, "L%u: usage: push integer", line_number);
+		dprintf(STDERR_FILENO, "L%u: usage: push integer\n", line_number);
 		free_list(h);/*libero la lista*/
 		exit(EXIT_FAILURE);
 	}
 	else /*en caso contrario, inserta el dato en el stack*/
 	{
-		if (add_node_end(h, atoi(tokenized_text)) == 1)
+		if (add_node_end(h, atoi(tokenized_text)) == 0)
 		{
 			free_list(h);
 			exit(EXIT_FAILURE);
@@ -95,7 +95,7 @@ void pint(stack_t **h, unsigned int line_number)
 {
 	if (h == NULL || *h == NULL)
 	{
-		dprintf(2, "L%u: can't pint, stack empty", line_number);
+		dprintf(2, "L%u: can't pint, stack empty\n", line_number);
 		free_list(h);
 		exit(EXIT_FAILURE);
 	}

@@ -18,12 +18,11 @@ void (*get_op_func(char *ops))(stack_t **stack, unsigned int line_number)
 
 	int x = 0;
 
-	while (x != 7)
+	while (instruction_s[x].opcode != NULL)
 	{
-		if (instruction_s[x].opcode == ops)
+		if (strcmp(ops, instruction_s[x].opcode) == 0)
 			return (instruction_s[x].f);
-		else
-			x++;
+		x++;
 	}
 	return (NULL);
 }
@@ -69,13 +68,17 @@ int main(int argc, char *argv[])
 	while (tokenized_text != NULL)
 	{
 		if (tokenized_text[0] == '#' || tokenized_text == NULL)
+		{
 			continue;
-		if (get_op_func(tokenized_text) != 0)
-			get_op_func(tokenized_text)(&h, lines);
-		else if (strcmp(tokenized_text, "push") == 0)
+		}
+		if (strcmp(tokenized_text, "push") == 0)
 		{
 			tokenized_text = strtok(NULL, "\n\t\a\r :;$");
 			push(&h, lines, tokenized_text);
+		}
+		else if (get_op_func(tokenized_text) != NULL)
+		{
+			get_op_func(tokenized_text)(&h, lines);
 		}
 		else
 		{

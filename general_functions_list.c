@@ -7,34 +7,28 @@
  **/
 int add_node_end(stack_t **head, const int n)
 {
-	stack_t *newnode;
+	stack_t *new_node;
 
-	newnode = malloc(sizeof(stack_t));
+	new_node = malloc(sizeof(stack_t));
 
-	if (newnode != NULL)
+	if (new_node == NULL)
 	{
-		newnode->n = n;
-		newnode->next = NULL;
-		newnode->prev = NULL;
+		return (0);
 	}
-	else
+	new_node->n = n;
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	if (*head != NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: malloc failed\n");
-		return (1);
+		(*head)->prev = new_node;
 	}
-	if (*head == NULL)
+	if (new_node != NULL)
 	{
-		*head = newnode;
-		newnode->next = NULL;
-		newnode->prev = NULL;
+		new_node->n = n;
+		new_node->next = *head;
+		(*head) = new_node;
 	}
-	else
-	{
-		*head = newnode;
-		newnode->next = *head;
-		newnode->prev = NULL;
-	}
-	return (0);
+	return (1);	
 }
 
 /**
