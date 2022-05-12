@@ -95,15 +95,15 @@ void pint(stack_t **h, unsigned int line_number)
 {
 	stack_t *aux = *h;
 
-	if (*h == NULL)
+	if (*h != NULL)
 	{
-		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
-		free_list(h);
-		exit(EXIT_FAILURE);
+		printf("%d\n", aux->n);
 	}
 	else
 	{
-		printf("%d\n", aux->n);
+		dprintf(2, "L%u: can't pint, stack empty\n", line_number);
+                free_list(h);
+                exit(EXIT_FAILURE);	
 	}
 }
 
