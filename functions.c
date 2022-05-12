@@ -93,7 +93,9 @@ void pall(stack_t **h, __attribute__((unused))unsigned int line_number)
  **/
 void pint(stack_t **h, unsigned int line_number)
 {
-	if (h == NULL || *h == NULL)
+	stack_t *aux = *head;
+
+	if (*h == NULL)
 	{
 		dprintf(2, "L%u: can't pint, stack empty\n", line_number);
 		free_list(h);
@@ -101,7 +103,7 @@ void pint(stack_t **h, unsigned int line_number)
 	}
 	else
 	{
-		printf("%d\n", (*h)->n);
+		printf("%d\n", aux->n);
 	}
 }
 
