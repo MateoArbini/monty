@@ -93,7 +93,7 @@ void pall(stack_t **h, __attribute__((unused))unsigned int line_number)
  **/
 void pint(stack_t **h, unsigned int line_number)
 {
-	stack_t *aux = *head;
+	stack_t *aux = *h;
 
 	if (*h == NULL)
 	{
