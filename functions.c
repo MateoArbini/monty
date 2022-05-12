@@ -97,7 +97,7 @@ void pint(stack_t **h, unsigned int line_number)
 
 	if (*h == NULL)
 	{
-		dprintf(2, "L%u: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		free_list(h);
 		exit(EXIT_FAILURE);
 	}
