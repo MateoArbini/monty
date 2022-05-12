@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 	tokenized_text = strtok(buffer, "\n\t $");
 	while (tokenized_text != NULL)
 	{
-		if (tokenized_text[0] == '#')
+		if (tokenized_text[0] == '#' || tokenized_text == NULL)
 			continue;
 		if (get_op_func(tokenized_text) != 0)
 			get_op_func(tokenized_text)(&h, lines);
